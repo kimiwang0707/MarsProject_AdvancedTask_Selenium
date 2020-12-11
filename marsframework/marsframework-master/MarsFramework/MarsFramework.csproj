@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit.3.12.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" />
+  <Import Project="..\packages\NUnit3TestAdapter.3.13.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.13.0\build\net35\NUnit3TestAdapter.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1CC741FF-012B-4180-AAED-68A98B97E06E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MarsFramework</RootNamespace>
+    <AssemblyName>MarsFramework</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DnsClient, Version=1.3.2.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
+      <HintPath>..\packages\DnsClient.1.3.2\lib\net45\DnsClient.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.3.6.0\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.DataSet.3.6.0\lib\net35\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.11.28.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.28\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.0.8, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.3.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=2.11.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.11.4\lib\net452\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.7.3\lib\net45\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.core, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnitTestAdapter.WithFramework.2.0.0\lib\nunit.core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="nunit.core.interfaces, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnitTestAdapter.WithFramework.2.0.0\lib\nunit.core.interfaces.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.util, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnitTestAdapter.WithFramework.2.0.0\lib\nunit.util.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NUnit.VisualStudio.TestAdapter, Version=2.0.0.0, Culture=neutral, PublicKeyToken=4cb40d35494691ac, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnitTestAdapter.WithFramework.2.0.0\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RazorEngine, Version=3.10.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorEngine.3.10.0\lib\net45\RazorEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="RelevantCodes.ExtentReports, Version=1.4.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExtentReports.2.41.0\lib\RelevantCodes.ExtentReports.dll</HintPath>
+    </Reference>
+    <Reference Include="SeleniumExtras.PageObjects, Version=3.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetSeleniumExtras.PageObjects.3.11.0\lib\net45\SeleniumExtras.PageObjects.dll</HintPath>
+    </Reference>
+    <Reference Include="SeleniumExtras.WaitHelpers, Version=3.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetSeleniumExtras.WaitHelpers.3.11.0\lib\net45\SeleniumExtras.WaitHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.5.0.0\lib\net46\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebDriver, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.3.141.0\lib\net45\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.Support.3.141.0\lib\net45\WebDriver.Support.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config\MarsResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MarsResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Global\Base.cs" />
+    <Compile Include="Global\GlobalDefinitions.cs" />
+    <Compile Include="Pages\ManageListings.cs" />
+    <Compile Include="Pages\ManageRequests.cs" />
+    <Compile Include="Pages\Notification.cs" />
+    <Compile Include="Pages\SearchSkills.cs" />
+    <Compile Include="Pages\ShareSkills.cs" />
+    <Compile Include="Pages\SignIn.cs" />
+    <Compile Include="Pages\SignUp.cs" />
+    <Compile Include="Pages\Profile.cs" />
+    <Compile Include="Test\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Config\MarsResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MarsResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Files\TestData.xlsx" />
+    <None Include="Files\TestDataManageListings.xlsx" />
+    <None Include="Files\TestDataShareSkill.xlsx" />
+    <None Include="packages.config" />
+    <None Include="TestReports\ExtentReports 2.0_files\css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\XMLFile.xml" />
+    <Content Include="Core\Compression\Snappy\lib\win\snappy32.dll" />
+    <Content Include="Core\Compression\Snappy\lib\win\snappy64.dll" />
+    <Content Include="Core\Compression\Zstandard\lib\win\libzstd.dll" />
+    <Content Include="Files\SampleTest.txt" />
+    <Content Include="TestReports\ExtentReports 2.0_files\1.png" />
+    <Content Include="TestReports\ExtentReports 2.0_files\2.png" />
+    <Content Include="TestReports\ExtentReports 2.0_files\extent.css" />
+    <Content Include="TestReports\ExtentReports 2.0_files\extent.js" />
+    <Content Include="TestReports\MarsReports.html" />
+    <Content Include="TestReports\Screenshots\Report_16-41-2018_4153.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_16-50-2018_5013.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-01-2018_133.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-03-2018_350.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-06-2018_648.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-08-2018_825.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-10-2018_1008.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-21-2018_2111.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-22-2018_2219.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-24-2018_2405.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-27-2018_2709.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-34-2018_3448.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-35-2018_3514.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-36-2018_3648.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-37-2018_3702.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-38-2018_3819.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-38-2018_3840.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-40-2018_4045.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-41-2018_4145.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-44-2018_4417.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-45-2018_4529.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-46-2018_4632.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-56-2018_5600.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_17-57-2018_5739.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_19-00-2018_026.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_19-00-2018_039.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_19-05-2018_533.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_19-23-2018_2340.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_19-25-2018_2532.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_19-45-2018_4555.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_19-49-2018_4946.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_19-50-2018_5049.jpeg" />
+    <Content Include="TestReports\Screenshots\Report_20-51-2018_5126.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_01-01-2019_139.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_01-02-2019_214.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_01-03-2019_317.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_01-04-2019_433.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_01-08-2019_829.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_01-09-2019_941.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_01-10-2019_1043.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_01-12-2019_1200.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_01-29-2019_2931.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_01-35-2019_3517.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_01-36-2019_3609.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_01-36-2019_3613.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_01-37-2019_3732.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_01-47-2019_4732.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_02-12-2019_1229.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_02-14-2019_1421.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_02-15-2019_1544.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_02-17-2019_1709.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_02-17-2019_1718.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_02-17-2019_1741.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_02-18-2019_1848.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_02-19-2019_1936.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_02-20-2019_2031.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_02-28-2019_2810.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_02-30-2019_3017.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_02-44-2019_4442.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-00-2019_024.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-01-2019_130.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-03-2019_349.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-04-2019_447.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-07-2019_737.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-17-2019_1727.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-21-2019_2102.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-24-2019_2451.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-25-2019_2533.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-26-2019_2656.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-31-2019_3131.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-32-2019_3204.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-34-2019_3428.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-35-2019_3515.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-35-2019_3556.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-37-2019_3710.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-39-2019_3939.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-40-2019_4013.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-41-2019_4120.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-44-2019_4415.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-44-2019_4440.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-45-2019_4515.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-45-2019_4522.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-47-2019_4716.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-47-2019_4740.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-48-2019_4856.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-54-2019_5433.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_03-59-2019_5911.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_04-22-2019_2254.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_04-27-2019_2716.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_04-32-2019_3214.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_04-39-2019_3900.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_04-39-2019_3941.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_04-41-2019_4100.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_04-47-2019_4736.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_04-49-2019_4951.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_04-51-2019_5113.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_04-51-2019_5154.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_04-53-2019_5352.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-04-2019_411.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-04-2019_432.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-09-2019_924.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-11-2019_1103.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-11-2019_1133.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-12-2019_1206.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-12-2019_1220.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-12-2019_1232.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-13-2019_1357.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-14-2019_1418.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-22-2019_2225.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-23-2019_2326.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-24-2019_2425.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-27-2019_2709.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-28-2019_2857.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-30-2019_3028.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-32-2019_3254.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-37-2019_3732.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-39-2019_3904.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-40-2019_4019.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-40-2019_4024.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-40-2019_4039.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-41-2019_4135.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-43-2019_4324.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-43-2019_4335.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-44-2019_4449.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-48-2019_4854.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-49-2019_4924.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-50-2019_5044.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-55-2019_5511.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-55-2019_5535.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-56-2019_5646.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-57-2019_5701.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-57-2019_5708.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-57-2019_5738.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_05-58-2019_5847.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_06-21-2019_2135.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_06-27-2019_2741.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_06-28-2019_2857.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_06-31-2019_3118.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_06-32-2019_3205.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_06-43-2019_4319.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_06-44-2019_4401.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_06-44-2019_4419.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_06-46-2019_4601.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_06-52-2019_5214.jpeg" />
+    <Content Include="TestReports\Screenshots\Vidhya ScreenShots\Report_06-54-2019_5422.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AutoItX3Lib">
+      <Guid>{F8937E53-D444-4E71-9275-35B64210CC3B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.13.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.13.0\build\net35\NUnit3TestAdapter.props'))" />
+    <Error Condition="!Exists('..\packages\MongoDB.Driver.Core.2.11.4\build\MongoDB.Driver.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MongoDB.Driver.Core.2.11.4\build\MongoDB.Driver.Core.targets'))" />
+    <Error Condition="!Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.12.0\build\NUnit.props'))" />
+    <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.87.0.4280.8800\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.87.0.4280.8800\build\Selenium.WebDriver.ChromeDriver.targets'))" />
+  </Target>
+  <Import Project="..\packages\MongoDB.Driver.Core.2.11.4\build\MongoDB.Driver.Core.targets" Condition="Exists('..\packages\MongoDB.Driver.Core.2.11.4\build\MongoDB.Driver.Core.targets')" />
+  <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.87.0.4280.8800\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.87.0.4280.8800\build\Selenium.WebDriver.ChromeDriver.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
