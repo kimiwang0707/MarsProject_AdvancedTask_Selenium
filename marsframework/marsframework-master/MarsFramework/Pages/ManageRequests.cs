@@ -16,7 +16,7 @@ namespace MarsFramework.Pages
     {
         public ManageRequestsLink()
         {
-            PageFactory.InitElements(GlobalDefinitions.driver, this);
+            PageFactory.InitElements(Base.driver, this);
         }
 
         #region Initialize Web Element
@@ -62,20 +62,20 @@ namespace MarsFramework.Pages
         #endregion
 
 
-        private string skillTitle;
+        string skillTitle;
         // Send Request
-        internal void SendRequest()
+        internal void SendRequest(IWebDriver driver)
         {
             // Populate the excel data into system
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "SignIn");
 
             // Wait and click on Search icon
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, "XPath",
+            GlobalDefinitions.WaitForElementClickable(driver, "XPath",
                 "//i[@class='search link icon']", 10);
             SearchIcon.Click();
 
             // Wait and Enter name in Search user part
-            GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath",
+            GlobalDefinitions.WaitForElement(driver, "XPath",
                 "//input[@placeholder='Search user']", 10);
             SearchUserInput.SendKeys(GlobalDefinitions.ExcelLib.ReadData(3, "Name"));
 
@@ -84,40 +84,40 @@ namespace MarsFramework.Pages
             DropdownFirstOpt.Click();
 
             // Wait and Choose the first one result
-            GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath",
+            GlobalDefinitions.WaitForElement(driver, "XPath",
                 "//*[@id='service-search-section']//div[2]/div/div/div[1]/a/img", 10);
             ResultFirstOpt.Click();
 
             // Wait, Record Skill Name and Click on Request
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, "XPath",
+            GlobalDefinitions.WaitForElementClickable(driver, "XPath",
                 "//div[@class='ui teal  button']", 10);
-            skillTitle = GlobalDefinitions.driver.FindElement(By.ClassName("skill-title")).Text;
+            skillTitle = driver.FindElement(By.ClassName("skill-title")).Text;
 
             RequestButton.Click();
 
             // Wait and click on YES
-            GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath",
+            GlobalDefinitions.WaitForElement(driver, "XPath",
                 "//button[@role='button']", 10);
             ConfirmButtonYes.Click();
         }
 
         // Verify Sent-Requests
-        internal void VerifySendRequest()
+        internal void VerifySendRequest(IWebDriver driver)
         {
             // Wait and Click on the Manage Requests tab
-            GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath",
+            GlobalDefinitions.WaitForElement(driver, "XPath",
                 "//div[@class='ui dropdown link item']", 10);        
             manageRequestsLink.Click();
 
             // Wait and click on dropdown menu the second option: Sent requests
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, "XPath",
+            GlobalDefinitions.WaitForElementClickable(driver, "XPath",
                 "//a[@class='item' and @href='/Home/SentRequest']", 10);
             SentRequestsLink.Click();
 
             // Wait and Assert if the title skill is equal to recorded skill
-            GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath",
+            GlobalDefinitions.WaitForElement(driver, "XPath",
                 "//*[@id='sent-request-section']/div[2]/div[1]/table/tbody/tr[1]/td[2]/a", 10);
-            string skillTitleExpected = GlobalDefinitions.driver.FindElement(By.XPath("" +
+            string skillTitleExpected = driver.FindElement(By.XPath("" +
                 "//*[@id='sent-request-section']/div[2]/div[1]/table/tbody/tr[1]/td[2]/a")).Text;
 
             if (skillTitle == skillTitleExpected)
@@ -135,27 +135,27 @@ namespace MarsFramework.Pages
         }
 
         // Received Request
-        internal void ReceivedRequest()
+        internal void ReceivedRequest(IWebDriver driver)
         {
             // Wait and Click on the Manage Requests tab
-            GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath",
+            GlobalDefinitions.WaitForElement(driver, "XPath",
                 "//div[@class='ui dropdown link item']", 10);
             manageRequestsLink.Click();
 
             // Wait and click on received requests button
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, "XPath",
+            GlobalDefinitions.WaitForElementClickable(driver, "XPath",
                 "//a[@class='item' and @href='/Home/ReceivedRequest']", 10);
             ReceivedRequestsLink.Click();
             Base.test.Log(LogStatus.Pass, "View received requests successfully!");
         }
 
         // Verify Received-Request
-        internal void VerifyReceivedRequest()
+        internal void VerifyReceivedRequest(IWebDriver driver)
         {
             // Verify the page
-            GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath",
+            GlobalDefinitions.WaitForElement(driver, "XPath",
                 "//*[@id='received-request-section']/div[2]/h2", 10);
-            string webTitle = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='received-request-section']/div[2]/h2")).Text;
+            string webTitle = driver.FindElement(By.XPath("//*[@id='received-request-section']/div[2]/h2")).Text;
 
             if (webTitle == "Received Requests")
             {

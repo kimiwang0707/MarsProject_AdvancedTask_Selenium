@@ -15,7 +15,7 @@ namespace MarsFramework.Pages
     {
         public ManageListingsLink()
         {
-            PageFactory.InitElements(Global.GlobalDefinitions.driver, this);
+            PageFactory.InitElements(Base.driver, this);
         }
 
         #region Initialize Web Elements
@@ -46,7 +46,7 @@ namespace MarsFramework.Pages
         private string titleFirstRow;
         private string descriptionFirstRow;
 
-        internal void ViewListing()
+        internal void ViewListing(IWebDriver driver)
         {
             try
             {
@@ -54,13 +54,13 @@ namespace MarsFramework.Pages
                 GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ManageListingPath, "ManageListings");
 
                 // Click Manage Listing Tab
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "LinkText", "Manage Listings", 10);
+                GlobalDefinitions.WaitForElement(driver, "LinkText", "Manage Listings", 10);
                 manageListingsLink.Click();
 
                 // Wait elements turn up
                 try
                 {
-                    GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "(//i[@class='eye icon'])[1]", 10);
+                    GlobalDefinitions.WaitForElement(driver, "XPath", "(//i[@class='eye icon'])[1]", 10);
                 }
                 catch (NoSuchElementException)
                 {
@@ -68,11 +68,11 @@ namespace MarsFramework.Pages
                 }
 
                 // Record the key details on page
-                categoryFirstRow = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='listing-management-section']" +
+                categoryFirstRow = driver.FindElement(By.XPath("//*[@id='listing-management-section']" +
                     "//div[1]//tr[1]/td[2]")).Text;
-                titleFirstRow = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='listing-management-section']" +
+                titleFirstRow = driver.FindElement(By.XPath("//*[@id='listing-management-section']" +
                     "//div[1]//tr[1]/td[3]")).Text;
-                descriptionFirstRow = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='listing-management-section']" +
+                descriptionFirstRow = driver.FindElement(By.XPath("//*[@id='listing-management-section']" +
                     "//div[1]//tr[1]/td[4]")).Text;
 
                 // Click View 
@@ -83,22 +83,22 @@ namespace MarsFramework.Pages
             }
         }
 
-        internal void VerifyViewListing()
+        internal void VerifyViewListing(IWebDriver driver)
         {
             try
             {
                 // Wait element turn up
-                IWebElement titleOnPage = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='service-detail-section']//h1/span"));
-                GlobalDefinitions.WaitForTextPresentInElement(GlobalDefinitions.driver, titleOnPage, titleFirstRow, 10);
+                IWebElement titleOnPage = driver.FindElement(By.XPath("//*[@id='service-detail-section']//h1/span"));
+                GlobalDefinitions.WaitForTextPresentInElement(driver, titleOnPage, titleFirstRow, 10);
 
                 // Verify category, title, description
-                var categoryOnPage = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='service-detail-section']" +
+                var categoryOnPage = driver.FindElement(By.XPath("//*[@id='service-detail-section']" +
                     "//div[1]/div[2]/div[2]//div[2]/div/div[1]/div/div[2]")).Text;
                 Assert.That(categoryOnPage, Is.EqualTo(categoryFirstRow));
 
                 Assert.That(titleOnPage.Text, Is.EqualTo(titleFirstRow));
 
-                var descriptionOnPage = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='service-detail-section']" +
+                var descriptionOnPage = driver.FindElement(By.XPath("//*[@id='service-detail-section']" +
                     "//div[2]/div/div/div[1]/div/div/div/div[2]")).Text;
                 Assert.That(descriptionOnPage, Contains.Substring(descriptionFirstRow.Substring(0, descriptionFirstRow.Length - 3)));
 
@@ -108,7 +108,7 @@ namespace MarsFramework.Pages
             }
         }
 
-        internal void EditListing()
+        internal void EditListing(IWebDriver driver)
         {
             try
             {
@@ -116,25 +116,25 @@ namespace MarsFramework.Pages
                 GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ManageListingPath, "ManageListings");
 
                 // Wait element turn up
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "LinkText", "Manage Listings", 10);
+                GlobalDefinitions.WaitForElement(driver, "LinkText", "Manage Listings", 10);
 
                 // Click Manage Listing Tab
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "LinkText", "Manage Listings", 10);
+                GlobalDefinitions.WaitForElement(driver, "LinkText", "Manage Listings", 10);
                 manageListingsLink.Click();
 
                 // Wait element turn up
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "(//i[@class='outline write icon'])[1]", 10);
+                GlobalDefinitions.WaitForElement(driver, "XPath", "(//i[@class='outline write icon'])[1]", 10);
 
                 // Click Edit (Change title, description and servie type)
                 edit.Click();
 
                 // Wait for element turn up on editing page
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "Name", "title", 10);
+                GlobalDefinitions.WaitForElement(driver, "Name", "title", 10);
 
                 // Edit title
                 try
                 {
-                    IWebElement titleOnPage = GlobalDefinitions.driver.FindElement(By.Name("title"));
+                    IWebElement titleOnPage = driver.FindElement(By.Name("title"));
                     titleOnPage.Clear();
                     titleOnPage.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Title"));
                 }
@@ -144,7 +144,7 @@ namespace MarsFramework.Pages
                 // Edit Description
                 try
                 {
-                    IWebElement descriptionOnPage = GlobalDefinitions.driver.FindElement(By.Name("description"));
+                    IWebElement descriptionOnPage = driver.FindElement(By.Name("description"));
                     descriptionOnPage.Clear();
                     descriptionOnPage.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Description"));
                 }
@@ -154,8 +154,8 @@ namespace MarsFramework.Pages
                 // Edit Category
                 try
                 {
-                    GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "Name", "categoryId", 10);
-                    IWebElement categoryDropdown = GlobalDefinitions.driver.FindElement(By.Name("categoryId"));
+                    GlobalDefinitions.WaitForElement(driver, "Name", "categoryId", 10);
+                    IWebElement categoryDropdown = driver.FindElement(By.Name("categoryId"));
 
                     new SelectElement(categoryDropdown).SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "Category"));
                 }
@@ -163,7 +163,7 @@ namespace MarsFramework.Pages
                 { Assert.Fail("Failed to select category!", e3.Message); }
 
                 // Click Save
-                GlobalDefinitions.driver.FindElement(By.XPath("//input[@value='Save']")).Click();
+                driver.FindElement(By.XPath("//input[@value='Save']")).Click();
 
             } catch (Exception ex)
             {
@@ -172,14 +172,14 @@ namespace MarsFramework.Pages
         }
 
 
-        internal void VerifyEditListing()
+        internal void VerifyEditListing(IWebDriver driver)
         {
             try
             {
                 // Wait element turn up         
                 try
                 {
-                    GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "(//i[@class='eye icon'])[1]", 10);
+                    GlobalDefinitions.WaitForElement(driver, "XPath", "(//i[@class='eye icon'])[1]", 10);
                 }
                 catch (NoSuchElementException)
                 {
@@ -187,13 +187,13 @@ namespace MarsFramework.Pages
                 }
 
                 // Verify the detail is updated
-                var categoryInList = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='listing-management-section']//tr[1]/td[2]")).Text;
+                var categoryInList = driver.FindElement(By.XPath("//*[@id='listing-management-section']//tr[1]/td[2]")).Text;
                 Assert.That(categoryInList, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Category")));
 
-                var titleInList = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='listing-management-section']//tr[1]/td[3]")).Text;
+                var titleInList = driver.FindElement(By.XPath("//*[@id='listing-management-section']//tr[1]/td[3]")).Text;
                 Assert.That(titleInList, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Title")));
 
-                var descriptionInList = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='listing-management-section']//tr[1]/td[4]")).Text;
+                var descriptionInList = driver.FindElement(By.XPath("//*[@id='listing-management-section']//tr[1]/td[4]")).Text;
                 Assert.That(descriptionInList, Contains.Substring(descriptionInList.Substring(0, descriptionInList.Length - 3)));
 
             } catch (Exception ex)
@@ -204,7 +204,7 @@ namespace MarsFramework.Pages
 
 
         private int listQty;
-        internal void DeleteListing()
+        internal void DeleteListing(IWebDriver driver)
         {
             try
             {
@@ -212,16 +212,16 @@ namespace MarsFramework.Pages
                 GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ManageListingPath, "ManageListings");
 
                 // Wait element turn up
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "LinkText", "Manage Listings", 10);
+                GlobalDefinitions.WaitForElement(driver, "LinkText", "Manage Listings", 10);
 
                 // Click Manage Listing Tab
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "LinkText", "Manage Listings", 10);
+                GlobalDefinitions.WaitForElement(driver, "LinkText", "Manage Listings", 10);
                 manageListingsLink.Click();
 
                 // Wait element turn up
                 try
                 {
-                    GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "(//i[@class='remove icon'])[1]", 6);
+                    GlobalDefinitions.WaitForElement(driver, "XPath", "(//i[@class='remove icon'])[1]", 6);
                 }
                 catch (Exception e)
                 {
@@ -229,15 +229,15 @@ namespace MarsFramework.Pages
                 }
 
                 // Obtain the quantity of element
-                var list = GlobalDefinitions.driver.FindElements(By.XPath("//*[@id='listing-management-section']/div[2]/div[1]/div[1]/table/tbody/tr"));
+                var list = driver.FindElements(By.XPath("//*[@id='listing-management-section']/div[2]/div[1]/div[1]/table/tbody/tr"));
                 listQty = list.Count();
 
                 // Click delete
                 delete.Click();
 
                 // Confirm Delete or not
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "ClassName", "actions", 5);
-                GlobalDefinitions.driver.FindElement(By.XPath("//div[@class='actions']/button[contains(text(),'"
+                GlobalDefinitions.WaitForElement(driver, "ClassName", "actions", 5);
+                driver.FindElement(By.XPath("//div[@class='actions']/button[contains(text(),'"
                     + GlobalDefinitions.ExcelLib.ReadData(2, "ConfirmDeletion") + "')]")).Click();
 
             } catch (Exception ex)
@@ -247,14 +247,14 @@ namespace MarsFramework.Pages
 
         }
 
-        internal void VerifyDeleteListing()
+        internal void VerifyDeleteListing(IWebDriver driver)
         {
             try
             {
                 // Wait element turn up 
                 try
                 {
-                    var listAfterDelete = GlobalDefinitions.driver.FindElements(By.XPath("//*[@id='listing-management-section']/div[2]/div[1]/div[1]/table/tbody/tr"));
+                    var listAfterDelete = driver.FindElements(By.XPath("//*[@id='listing-management-section']/div[2]/div[1]/div[1]/table/tbody/tr"));
 
                     int listQtyAfterDeletion = listAfterDelete.Count();
 

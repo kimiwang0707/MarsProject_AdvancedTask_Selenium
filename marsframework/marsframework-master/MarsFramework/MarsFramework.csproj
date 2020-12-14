@@ -130,6 +130,7 @@
     </Compile>
     <Compile Include="Global\Base.cs" />
     <Compile Include="Global\GlobalDefinitions.cs" />
+    <Compile Include="Pages\Chat.cs" />
     <Compile Include="Pages\ManageListings.cs" />
     <Compile Include="Pages\ManageRequests.cs" />
     <Compile Include="Pages\Notification.cs" />

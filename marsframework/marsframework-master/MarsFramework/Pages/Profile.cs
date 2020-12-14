@@ -14,7 +14,7 @@ namespace MarsFramework
 
         public Profile()
         {
-            PageFactory.InitElements(Global.GlobalDefinitions.driver, this);
+            PageFactory.InitElements(Base.driver, this);
         }
 
         #region  Initialize Web Elements 
@@ -217,7 +217,7 @@ namespace MarsFramework
 
 
         // Enter Profile
-        internal void EnterProfile()
+        internal void EnterProfile(IWebDriver driver)
         {
             // Populate the data saved in Excel to Collection
             try
@@ -232,7 +232,7 @@ namespace MarsFramework
             try
             {
                 // Click Edit icon
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "//span[contains(text(),'Time')]/i", 5);
+                GlobalDefinitions.WaitForElement(driver, "XPath", "//span[contains(text(),'Time')]/i", 5);
                 AvailabilityTimeEdit.Click();
 
                 // Click dropdown menu
@@ -252,7 +252,7 @@ namespace MarsFramework
             try
             {
                 // Click Edit icon
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "//span[contains(text(),'30hours') or contains(text(),'As needed')]/i", 5);
+                GlobalDefinitions.WaitForElement(driver, "XPath", "//span[contains(text(),'30hours') or contains(text(),'As needed')]/i", 5);
                 AvailabilityHoursEdit.Click();
 
                 // Click dropdown menu
@@ -271,7 +271,7 @@ namespace MarsFramework
             try
             {
                 // Click Edit icon
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "//span[contains(text(),'per month')]/i", 5);
+                GlobalDefinitions.WaitForElement(driver, "XPath", "//span[contains(text(),'per month')]/i", 5);
                 SalaryEdit.Click();
 
                 // Click dropdown menu
@@ -293,7 +293,7 @@ namespace MarsFramework
                 DescriptionEdit.Click();
 
                 // Input description in text area
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "//textarea[@name='value']", 5);
+                GlobalDefinitions.WaitForElement(driver, "XPath", "//textarea[@name='value']", 5);
                 Description.Clear();
                 Description.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Description"));
 
@@ -310,15 +310,15 @@ namespace MarsFramework
             try
             {
                 // Click Language tab
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "//a[@data-tab='first']", 5);
+                GlobalDefinitions.WaitForElement(driver, "XPath", "//a[@data-tab='first']", 5);
                 LanguageTab.Click();
 
                 // Click Add New
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "//div[@data-tab='first']//div[contains(text(),'Add New')]", 5);
+                GlobalDefinitions.WaitForElement(driver, "XPath", "//div[@data-tab='first']//div[contains(text(),'Add New')]", 5);
                 LanguageAddNewBtn.Click();
 
                 // Enter Language
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "//input[@placeholder='Add Language']", 5);
+                GlobalDefinitions.WaitForElement(driver, "XPath", "//input[@placeholder='Add Language']", 5);
                 LanguageName.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Language"));
 
                 // Choose Language level 0-basic; 1-conversational; 2-fluent; 3-native
@@ -340,15 +340,15 @@ namespace MarsFramework
             try
             {
                 // Click Skills tab
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "//a[@data-tab='second']", 5);
+                GlobalDefinitions.WaitForElement(driver, "XPath", "//a[@data-tab='second']", 5);
                 SkillTab.Click();
 
                 // Click Add New
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "//div[@data-tab='second']//div[contains(text(),'Add New')]", 5);
+                GlobalDefinitions.WaitForElement(driver, "XPath", "//div[@data-tab='second']//div[contains(text(),'Add New')]", 5);
                 SkillAddNewBtn.Click();
 
                 // Enter Skill
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "//input[@placeholder='Add Skill']", 5);
+                GlobalDefinitions.WaitForElement(driver, "XPath", "//input[@placeholder='Add Skill']", 5);
                 SkillName.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Skill"));
 
                 // Choose Skill level 0-beginer; 1-intermediate; 2-expert
@@ -369,15 +369,15 @@ namespace MarsFramework
             try
             {
                 // Click Education tab
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "//a[@data-tab='third']", 5);
+                GlobalDefinitions.WaitForElement(driver, "XPath", "//a[@data-tab='third']", 5);
                 EducationTab.Click();
 
                 // Click Add New
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "//div[@data-tab='third']//div[contains(text(),'Add New')]", 5);
+                GlobalDefinitions.WaitForElement(driver, "XPath", "//div[@data-tab='third']//div[contains(text(),'Add New')]", 5);
                 EducationAddNewBtn.Click();
 
                 // Enter University Name
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "//input[@name='instituteName']", 5);
+                GlobalDefinitions.WaitForElement(driver, "XPath", "//input[@name='instituteName']", 5);
                 EducationName.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "University"));
 
                 // Enter Degree
@@ -409,15 +409,15 @@ namespace MarsFramework
             try
             {
                 // Click Certifications tab
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "//a[@data-tab='fourth']", 5);
+                GlobalDefinitions.WaitForElement(driver, "XPath", "//a[@data-tab='fourth']", 5);
                 CertificationTab.Click();
 
                 // Click Add New
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "//div[@data-tab='fourth']//div[contains(text(),'Add New')]", 5);
+                GlobalDefinitions.WaitForElement(driver, "XPath", "//div[@data-tab='fourth']//div[contains(text(),'Add New')]", 5);
                 CertificationAddNewBtn.Click();
 
                 // Enter Certificate name
-                GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "//input[@name='certificationName']", 5);
+                GlobalDefinitions.WaitForElement(driver, "XPath", "//input[@name='certificationName']", 5);
                 CertificationName.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Certificate"));
 
                 // Enter Issuing place
@@ -429,7 +429,7 @@ namespace MarsFramework
 
                 // Click Add
                 CertificationAddBtn.Click();
-                Base.test.Log(RelevantCodes.ExtentReports.LogStatus.Pass, "Enter certificate successfully");
+                Base.test.Log(LogStatus.Pass, "Enter certificate successfully");
 
             } catch (Exception ex)
             {
@@ -440,7 +440,7 @@ namespace MarsFramework
         }
 
         // Verify Enter-Profile
-        internal void VerifyEnterProfile()
+        internal void VerifyEnterProfile(IWebDriver driver)
         {
             try
             {
@@ -448,10 +448,10 @@ namespace MarsFramework
                 GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "Profile");
 
                 // Refresh the page
-                GlobalDefinitions.driver.Navigate().Refresh();
+                driver.Navigate().Refresh();
 
                 // Wait for all text present in Element
-                GlobalDefinitions.WaitForTextPresentInElement(GlobalDefinitions.driver, profileName,
+                GlobalDefinitions.WaitForTextPresentInElement(driver, profileName,
                     GlobalDefinitions.ExcelLib.ReadData(2, "Name"), 10);
 
             } catch (Exception e)
@@ -463,7 +463,7 @@ namespace MarsFramework
             #region Verify Enter Availability Type
             try
             {
-                var AvaiType = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/" +
+                var AvaiType = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/" +
                     "section[2]//div[2]//div[3]//div[2]/div/span")).Text;
                 Assert.That(AvaiType, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Availability Type")));
 
@@ -476,7 +476,7 @@ namespace MarsFramework
             #region Verify Enter Availability Hours
             try
             {
-                var AvaiHours = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
+                var AvaiHours = driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
                     "/div/section[2]//div[2]//div[3]//div[3]/div/span")).Text;
                 Assert.That(AvaiHours, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Availability Hours")));
 
@@ -489,7 +489,7 @@ namespace MarsFramework
             #region Verify Enter Earn Target
             try
             {
-                var salary = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
+                var salary = driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
                     "/div/section[2]//div[2]//div[3]//div[4]/div/span")).Text;
                 Assert.That(salary, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Earn Target")));
 
@@ -502,7 +502,7 @@ namespace MarsFramework
             #region Verify Enter Description
             try
             {
-                var description = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
+                var description = driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
                     "/div/section[2]/div/div/div/div[3]/div/div/div/span")).Text;
                 Assert.That(description, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Description")));
 
@@ -516,12 +516,12 @@ namespace MarsFramework
             try
             {
                 //Verify Language Name
-                var lastRowLanguageName = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
+                var lastRowLanguageName = driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
                     "/div/section[2]//div[3]/form/div[2]//div[2]//tbody[last()]/tr/td[1]")).Text;
                 Assert.That(lastRowLanguageName, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Language")));
 
                 //Verify Language Level
-                var lastRowLanguageLevel = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
+                var lastRowLanguageLevel = driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
                     "/div/section[2]//div[3]/form/div[2]//div[2]//tbody[last()]/tr/td[2]")).Text;
                 Assert.That(lastRowLanguageLevel, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Language Level")));
 
@@ -538,12 +538,12 @@ namespace MarsFramework
                 SkillTab.Click();
 
                 //Verify Skill Name
-                var lastRowSkillName = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
+                var lastRowSkillName = driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
                     "/div/section[2]//div[3]/form/div[3]//div[2]//tbody[last()]/tr/td[1]")).Text;
                 Assert.That(lastRowSkillName, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Skill")));
 
                 //Verify Skill Level
-                var lastRowSkillLevel = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
+                var lastRowSkillLevel = driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
                     "/div/section[2]//div[3]/form/div[3]//div[2]//tbody[last()]/tr/td[2]")).Text;
                 Assert.That(lastRowSkillLevel, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Skill Level")));
 
@@ -560,27 +560,27 @@ namespace MarsFramework
                 EducationTab.Click();
 
                 //Verify Education Country
-                var lastRowEducationCountry = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
+                var lastRowEducationCountry = driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
                     "/div/section[2]//div[3]/form/div[4]//div[2]//tbody[last()]/tr/td[1]")).Text;
                 Assert.That(lastRowEducationCountry, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Country")));
 
                 //Verify Education Name
-                var lastRowEducationName = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
+                var lastRowEducationName = driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
                     "/div/section[2]//div[3]/form/div[4]//div[2]//tbody[last()]/tr/td[2]")).Text;
                 Assert.That(lastRowEducationName, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "University")));
 
                 //Verify Education Title
-                var lastRowEducationTitle = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
+                var lastRowEducationTitle = driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
                     "/div/section[2]//div[3]/form/div[4]//div[2]//tbody[last()]/tr/td[3]")).Text;
                 Assert.That(lastRowEducationTitle, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Title")));
 
                 //Verify Education Degree
-                var lastRowEducationDegree = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
+                var lastRowEducationDegree = driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
                     "/div/section[2]//div[3]/form/div[4]//div[2]//tbody[last()]/tr/td[4]")).Text;
                 Assert.That(lastRowEducationDegree, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Degree")));
 
                 //Verify Education Graduation Year
-                var lastRowEducationGraduationYear = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
+                var lastRowEducationGraduationYear = driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
                     "/div/section[2]//div[3]/form/div[4]//div[2]//tbody[last()]/tr/td[5]")).Text;
                 Assert.That(lastRowEducationGraduationYear, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Graduation Year")));
 
@@ -598,17 +598,17 @@ namespace MarsFramework
                 CertificationTab.Click();
 
                 //Verify Certificate Name
-                var lastRowCertificateName = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
+                var lastRowCertificateName = driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
                     "/div/section[2]//div[3]/form/div[5]//div[2]//tbody[last()]/tr/td[1]")).Text;
                 Assert.That(lastRowCertificateName, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Certificate")));
 
                 //Verify Certificate Issuing Place
-                var lastRowCertificateFrom = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
+                var lastRowCertificateFrom = driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
                     "/div/section[2]//div[3]/form/div[5]//div[2]//tbody[last()]/tr/td[2]")).Text;
                 Assert.That(lastRowCertificateFrom, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "CertifiedFrom")));
 
                 //Verify Certificate Year
-                var lastRowCertificateYear = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
+                var lastRowCertificateYear = driver.FindElement(By.XPath("//*[@id='account-profile-section']" +
                     "/div/section[2]//div[3]/form/div[5]//div[2]//tbody[last()]/tr/td[3]")).Text;
                 Assert.That(lastRowCertificateYear, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Certificate Issuing Year")));
 
@@ -624,7 +624,7 @@ namespace MarsFramework
 
 
         // Delete Profile
-        internal void DeleteProfile()
+        internal void DeleteProfile(IWebDriver driver)
         {
             try
             {
@@ -632,7 +632,7 @@ namespace MarsFramework
                 GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "Profile"); 
 
                 // Wait for all text present in Element
-                GlobalDefinitions.WaitForTextPresentInElement(GlobalDefinitions.driver, profileName,
+                GlobalDefinitions.WaitForTextPresentInElement(driver, profileName,
                     GlobalDefinitions.ExcelLib.ReadData(2, "Name"), 10);
 
             } catch (Exception e)
@@ -714,7 +714,7 @@ namespace MarsFramework
         }
 
         // Verify Delete-Profile
-        internal void VerifyDeleteProfile()
+        internal void VerifyDeleteProfile(IWebDriver driver)
         {
             try
             {
@@ -722,10 +722,10 @@ namespace MarsFramework
                 GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "Profile");
 
                 // Refresh the page
-                GlobalDefinitions.driver.Navigate().Refresh();
+                driver.Navigate().Refresh();
 
                 // Wait for all text present in Element
-                GlobalDefinitions.WaitForTextPresentInElement(GlobalDefinitions.driver, profileName,
+                GlobalDefinitions.WaitForTextPresentInElement(driver, profileName,
                     GlobalDefinitions.ExcelLib.ReadData(2, "Name"), 10);
 
             } catch (Exception ex)
@@ -746,7 +746,7 @@ namespace MarsFramework
                 try
                 {
                     // Find the last row data             
-                    GlobalDefinitions.driver.FindElement(By.XPath("//div[@data-tab='first']" +
+                    driver.FindElement(By.XPath("//div[@data-tab='first']" +
                         "//table/tbody[last()]/tr//*[contains(text(), '" + languageExcel + "')]"));
                     Assert.Fail("Failed to delete language");
                 }
@@ -773,7 +773,7 @@ namespace MarsFramework
                 try
                 {
                     // Check the last row data
-                    GlobalDefinitions.driver.FindElement(By.XPath("//div[@data-tab='second']" +
+                    driver.FindElement(By.XPath("//div[@data-tab='second']" +
                         "//table/tbody[last()]/tr//*[contains(text(), '" + skillExcel + "')]"));
 
                     Assert.Fail("Failed to delete skill");
@@ -802,15 +802,15 @@ namespace MarsFramework
             try
             {
                 // Find the last row data
-                GlobalDefinitions.driver.FindElement(By.XPath("//div[@data-tab='third']" +
+                driver.FindElement(By.XPath("//div[@data-tab='third']" +
                             "//table/tbody[last()]/tr//*[contains(text(), '" + instituteNameExcel + "')]"));
-                GlobalDefinitions.driver.FindElement(By.XPath("//div[@data-tab='third']" +
+                driver.FindElement(By.XPath("//div[@data-tab='third']" +
                             "//table/tbody[last()]/tr//*[contains(text(), '" + instituteCountryExcel + "')]"));
-                GlobalDefinitions.driver.FindElement(By.XPath("//div[@data-tab='third']" +
+                driver.FindElement(By.XPath("//div[@data-tab='third']" +
                             "//table/tbody[last()]/tr//*[contains(text(), '" + instituteTitleExcel + "')]"));
-                GlobalDefinitions.driver.FindElement(By.XPath("//div[@data-tab='third']" +
+                driver.FindElement(By.XPath("//div[@data-tab='third']" +
                             "//table/tbody[last()]/tr//*[contains(text(), '" + instituteDegreeExcel + "')]"));
-                GlobalDefinitions.driver.FindElement(By.XPath("//div[@data-tab='third']" +
+                driver.FindElement(By.XPath("//div[@data-tab='third']" +
                             "//table/tbody[last()]/tr//*[contains(text(), '" + instituteGraduateYearExcel + "')]"));
 
                 Assert.Fail("Failed to delete education.");
@@ -838,11 +838,11 @@ namespace MarsFramework
             try
             {
                 // Find the last row data
-                GlobalDefinitions.driver.FindElement(By.XPath("//div[@data-tab='fourth']" +
+                driver.FindElement(By.XPath("//div[@data-tab='fourth']" +
                             "//table/tbody[last()]/tr//*[contains(text(), '" + certificateNameExcel + "')]"));
-                GlobalDefinitions.driver.FindElement(By.XPath("//div[@data-tab='fourth']" +
+                driver.FindElement(By.XPath("//div[@data-tab='fourth']" +
                             "//table/tbody[last()]/tr//*[contains(text(), '" + certificateFromExcel + "')]"));
-                GlobalDefinitions.driver.FindElement(By.XPath("//div[@data-tab='fourth']" +
+                driver.FindElement(By.XPath("//div[@data-tab='fourth']" +
                             "//table/tbody[last()]/tr//*[contains(text(), '" + certificateYearExcel + "')]"));
 
                 Assert.Fail("Failed to delete certificate.");

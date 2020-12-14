@@ -29,7 +29,7 @@ namespace MarsFramework.Global
         #endregion
 
         #region Declare web driver
-        
+        public static IWebDriver driver;
         #endregion
 
         #region reports
@@ -50,18 +50,18 @@ namespace MarsFramework.Global
             {
 
                 case 1:
-                    GlobalDefinitions.driver = new FirefoxDriver();
+                    driver = new FirefoxDriver();
                     break;
                 case 2:
-                    GlobalDefinitions.driver = new ChromeDriver();
-                    GlobalDefinitions.driver.Manage().Window.Maximize();
+                    driver = new ChromeDriver();
+                    driver.Manage().Window.Maximize();
                     break;
 
             }         
 
             // Populate the data saved in excel
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "SignIn");
-            GlobalDefinitions.driver.Navigate().GoToUrl(GlobalDefinitions.ExcelLib.ReadData(2, "Url"));
+            driver.Navigate().GoToUrl(GlobalDefinitions.ExcelLib.ReadData(2, "Url"));
 
             #region Initialise Reports
 
@@ -74,7 +74,7 @@ namespace MarsFramework.Global
             if (MarsResource.IsLogin == "true")
             {
                 SignIn loginobj = new SignIn();
-                 loginobj.LoginSteps();
+                 loginobj.LoginSteps(driver);
             }
             else
             {
@@ -83,9 +83,9 @@ namespace MarsFramework.Global
             }
 
             // Obtain current file path to write relative path for excel later instead of absolute path
-            String path = System.IO.Directory.GetCurrentDirectory();
-            Debug.WriteLine("Obtain Path:");
-            Debug.WriteLine(path);
+            //String path = System.IO.Directory.GetCurrentDirectory();
+            //Debug.WriteLine("Obtain Path:");
+            //Debug.WriteLine(path);
         }
 
 
@@ -103,7 +103,7 @@ namespace MarsFramework.Global
             if (TestContext.CurrentContext.Result.Outcome != ResultState.Success)
             {
                 // Screenshot
-                String img = SaveScreenShotClass.SaveScreenshot(GlobalDefinitions.driver, "Report");
+                String img = SaveScreenShotClass.SaveScreenshot(driver, "Report");
             }
 
             // end test. (Reports)
@@ -113,8 +113,7 @@ namespace MarsFramework.Global
             extent.Flush();
             
             // Close the driver :)            
-            GlobalDefinitions.driver.Close();
-            GlobalDefinitions.driver.Dispose();
+            driver.Dispose();
         }
         #endregion
 

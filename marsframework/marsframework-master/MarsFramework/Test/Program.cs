@@ -16,9 +16,9 @@ namespace MarsFramework
             {
                 test = extent.StartTest("Enter Profile");
                 Profile profilePage = new Profile();
-                profilePage.EnterProfile();
+                profilePage.EnterProfile(driver);
 
-                profilePage.VerifyEnterProfile();
+                profilePage.VerifyEnterProfile(driver);
             }
 
             [Test, Description("Delete Profile")]
@@ -26,9 +26,9 @@ namespace MarsFramework
             {
                 test = extent.StartTest("Delete Profile");
                 Profile profilePage = new Profile();
-                profilePage.DeleteProfile();
+                profilePage.DeleteProfile(driver);
 
-                profilePage.VerifyDeleteProfile();
+                profilePage.VerifyDeleteProfile(driver);
             }
             #endregion
 
@@ -38,9 +38,9 @@ namespace MarsFramework
             {
                 test = extent.StartTest("Enter Share Skill");
                 ShareSkills shareSkillPage= new ShareSkills();
-                shareSkillPage.EnterShareSkill();
+                shareSkillPage.EnterShareSkill(driver);
 
-                shareSkillPage.VerifyEnterShareSkill();
+                shareSkillPage.VerifyEnterShareSkill(driver);
             }
             #endregion
 
@@ -50,9 +50,9 @@ namespace MarsFramework
             {
                 test = extent.StartTest("View Listing");
                 ManageListingsLink manageListings = new ManageListingsLink();
-                manageListings.ViewListing();
+                manageListings.ViewListing(driver);
 
-                manageListings.VerifyViewListing();
+                manageListings.VerifyViewListing(driver);
             }
 
             [Test, Description("Edit Listing")]
@@ -60,9 +60,9 @@ namespace MarsFramework
             {
                 test = extent.StartTest("Edit Listing");
                 ManageListingsLink manageListings = new ManageListingsLink();
-                manageListings.EditListing();
+                manageListings.EditListing(driver);
 
-                manageListings.VerifyEditListing();
+                manageListings.VerifyEditListing(driver);
             }
 
             [Test, Description("Delete Listing")]
@@ -70,9 +70,9 @@ namespace MarsFramework
             {
                 test = extent.StartTest("Delete Listing");
                 ManageListingsLink manageListings = new ManageListingsLink();
-                manageListings.DeleteListing();
+                manageListings.DeleteListing(driver);
 
-                manageListings.VerifyDeleteListing();
+                manageListings.VerifyDeleteListing(driver);
             }
             #endregion
 
@@ -83,9 +83,9 @@ namespace MarsFramework
             {
                 test = extent.StartTest("Send Request");
                 ManageRequestsLink manageRequests = new ManageRequestsLink();
-                manageRequests.SendRequest();
+                manageRequests.SendRequest(driver);
 
-                manageRequests.VerifySendRequest();
+                manageRequests.VerifySendRequest(driver);
             }
 
 
@@ -94,9 +94,9 @@ namespace MarsFramework
             {
                 test = extent.StartTest("View Received Request");
                 ManageRequestsLink manageRequests = new ManageRequestsLink();
-                manageRequests.ReceivedRequest();
+                manageRequests.ReceivedRequest(driver);
 
-                manageRequests.VerifyReceivedRequest();
+                manageRequests.VerifyReceivedRequest(driver);
             }
 
             #endregion
@@ -107,9 +107,9 @@ namespace MarsFramework
             {
                 test = extent.StartTest("Search Skills By Categories");
                 SearchSkills searchSkills = new SearchSkills();
-                searchSkills.SearchSkillsByCategories();
+                searchSkills.SearchSkillsByCategories(driver);
 
-                searchSkills.VerifySearchSkillsByCategories();
+                searchSkills.VerifySearchSkillsByCategories(driver);
             }
 
             [Test, Description("Search Skills By Filters")]
@@ -117,13 +117,67 @@ namespace MarsFramework
             {
                 test = extent.StartTest("Search Skills By Filters");
                 SearchSkills searchSkills = new SearchSkills();
-                searchSkills.SearchSkillsByFilters();
+                searchSkills.SearchSkillsByFilters(driver);
 
-                searchSkills.VerifySearchSkillsByFilters();
+                searchSkills.VerifySearchSkillsByFilters(driver);
             }
 
             #endregion
 
+            #region Notification Page
+            [Test, Description("Notification Operations")]
+            public void NotificationOperations()
+            {
+                Notification notification = new Notification();
+                notification.ShowLessAndMoreNotification(driver);
+                notification.VerifyShowLessAndMoreNotification(driver);
+
+                notification.SelectNotification(driver);
+                notification.VerifySelectNotification(driver);
+
+                notification.UnselectNotification(driver);
+                notification.VerifyUnselectNotification(driver);
+            }
+
+            [Test, Description("Mark Notification as Read")]
+            public void NotificationMarkAsRead()
+            {
+                Notification notification = new Notification();
+
+                notification.MarkAsReadNotification(driver);
+                notification.VerifyMarkAsReadNotification(driver);
+            }
+
+
+            [Test, Description("Notification Deletion")]
+            public void NotificationDelete()
+            {
+                Notification notification = new Notification();
+
+                notification.DeleteNotification(driver);
+                notification.VerifyDeleteNotification(driver);
+            }
+
+            #endregion
+
+            #region Chat Page
+            [Test, Description("Chat With Other Users")]
+            public void ChatTest()
+            {
+                Chat chat = new Chat();
+                chat.ChatWithOtherUser(driver);
+                chat.VerifyChatWithOtherUser(driver);
+            }
+
+            [Test, Description("View Chat History")]
+            public void ViewChatHistoryTest()
+            {
+                Chat chat = new Chat();
+                chat.ViewChatHistory(driver);
+                chat.VerifyViewChatHistory(driver);
+            }
+
+            #endregion
 
         }
     }

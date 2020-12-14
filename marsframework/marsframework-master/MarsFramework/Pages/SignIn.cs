@@ -14,7 +14,7 @@ namespace MarsFramework.Pages
     {
         public SignIn()
         {
-            PageFactory.InitElements(Global.GlobalDefinitions.driver, this);
+            PageFactory.InitElements(Base.driver, this);
         }
 
         #region  Initialize Web Elements 
@@ -39,7 +39,7 @@ namespace MarsFramework.Pages
 
 
 
-        internal void LoginSteps()
+        internal void LoginSteps(IWebDriver driver)
         {
             // extent reports
             Base.test = Base.extent.StartTest("Login steps test");
@@ -48,7 +48,7 @@ namespace MarsFramework.Pages
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "SignIn");
 
             // Wait Element
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, "XPath", "//a[contains(text(),'Sign')]", 10);
+            GlobalDefinitions.WaitForElementClickable(driver, "XPath", "//a[contains(text(),'Sign')]", 10);
 
             // Click signin tab to signin page
             SignIntab.Click();
@@ -63,10 +63,10 @@ namespace MarsFramework.Pages
             LoginBtn.Click();
 
             // Verify the login status                      
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, "XPath", "//*[@id='account-profile-section']" +
+            GlobalDefinitions.WaitForElementClickable(driver, "XPath", "//*[@id='account-profile-section']" +
                 "//div[1]/div[2]/div/span", 10);         
 
-            var greeting = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='account-profile-section']//div[1]/div[2]/div/span")).Text;
+            var greeting = driver.FindElement(By.XPath("//*[@id='account-profile-section']//div[1]/div[2]/div/span")).Text;
             //Assert.That(loginName, Contains.Substring("Kimi"));
             if (greeting.Contains("Hi"))
             {

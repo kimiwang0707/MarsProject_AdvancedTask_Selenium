@@ -17,7 +17,7 @@ namespace MarsFramework.Pages
     {
         public ShareSkills()
         {
-            PageFactory.InitElements(Global.GlobalDefinitions.driver, this);
+            PageFactory.InitElements(Base.driver, this);
         }
 
         #region Initialize Web Elements
@@ -74,17 +74,17 @@ namespace MarsFramework.Pages
 
 
 
-        internal void EnterShareSkill()
+        internal void EnterShareSkill(IWebDriver driver)
         {
             // Populate data saved in excel to collection
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ShareSkillPath, "ShareSkill");
 
             // Click ShareSkill Button 
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, "LinkText", "Share Skill", 5);
+            GlobalDefinitions.WaitForElementClickable(driver, "LinkText", "Share Skill", 5);
             ShareSkillBtn.Click();
 
             // Wait Elements on new page
-            GlobalDefinitions.WaitForTextPresentInElement(GlobalDefinitions.driver, Title, "", 10);
+            GlobalDefinitions.WaitForTextPresentInElement(driver, Title, "", 10);
 
             // Enter Title from excel
             Title.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Title"));
@@ -93,7 +93,7 @@ namespace MarsFramework.Pages
             Description.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Description"));
 
             // Select Category from Excel
-            GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "Name", "categoryId", 10);
+            GlobalDefinitions.WaitForElement(driver, "Name", "categoryId", 10);
 
             new SelectElement(CategoryDropdown).SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "Category"));
             new SelectElement(SubCategoryDropdown).SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "SubCategory"));
@@ -103,12 +103,12 @@ namespace MarsFramework.Pages
             Tags.SendKeys(Keys.Enter);
 
             // Choose Service Type radio button from excel
-            IWebElement ServiceTypeRadioBtn = GlobalDefinitions.driver.FindElement(By.XPath("//input[@name='serviceType' " +
+            IWebElement ServiceTypeRadioBtn = driver.FindElement(By.XPath("//input[@name='serviceType' " +
                 "and @value='" + GlobalDefinitions.ExcelLib.ReadData(2, "ServiceType") + "'] "));
             ServiceTypeRadioBtn.Click();
 
             // Choose Location Type radio button from excel
-            IWebElement LocationTypeRadioBtn = GlobalDefinitions.driver.FindElement(By.XPath("//input[@name='locationType' " +
+            IWebElement LocationTypeRadioBtn = driver.FindElement(By.XPath("//input[@name='locationType' " +
                 "and @value='" + GlobalDefinitions.ExcelLib.ReadData(2, "LocationType") + "']"));
             LocationTypeRadioBtn.Click();
 
@@ -124,17 +124,17 @@ namespace MarsFramework.Pages
                 if (sr != null && sr != "")
                 {
                     // Select checkbox
-                    IWebElement DaysCheckbox = GlobalDefinitions.driver.FindElement(By.XPath("//input[@name='Available' " +
+                    IWebElement DaysCheckbox = driver.FindElement(By.XPath("//input[@name='Available' " +
                 "and @index='" + GlobalDefinitions.ExcelLib.ReadData(rows, "SelectDay") + "']"));
                     DaysCheckbox.Click();
 
                     // Enter start time
-                    IWebElement StartTimeInputArea = GlobalDefinitions.driver.FindElement(By.XPath("//input[@name='StartTime' " +
+                    IWebElement StartTimeInputArea = driver.FindElement(By.XPath("//input[@name='StartTime' " +
                         "and @index='" + GlobalDefinitions.ExcelLib.ReadData(rows, "SelectDay") + "']"));
                     StartTimeInputArea.SendKeys(GlobalDefinitions.ExcelLib.ReadData(rows, "StartTime"));
 
                     // Enter end time
-                    IWebElement EndTimeInputArea = GlobalDefinitions.driver.FindElement(By.XPath("//input[@name='EndTime' " +
+                    IWebElement EndTimeInputArea = driver.FindElement(By.XPath("//input[@name='EndTime' " +
                        "and @index='" + GlobalDefinitions.ExcelLib.ReadData(rows, "SelectDay") + "']"));
                     EndTimeInputArea.SendKeys(GlobalDefinitions.ExcelLib.ReadData(rows, "EndTime"));
                 }
@@ -149,7 +149,7 @@ namespace MarsFramework.Pages
             try
             {
                 string SkillTradeTypeExcel = GlobalDefinitions.ExcelLib.ReadData(2, "SkillTrade").ToString();
-                IWebElement SkillTradeRadioBtn = GlobalDefinitions.driver.FindElement(By.XPath("//input[@name='skillTrades' " +
+                IWebElement SkillTradeRadioBtn = driver.FindElement(By.XPath("//input[@name='skillTrades' " +
                     "and @value='" + SkillTradeTypeExcel + "']"));
                 SkillTradeRadioBtn.Click();
 
@@ -191,7 +191,7 @@ namespace MarsFramework.Pages
             // Option 1: SendKeys
             //try
             //{
-            //    IWebElement upload = GlobalDefinitions.driver.FindElement(By.XPath("//input[@id='selectFile']"));
+            //    IWebElement upload = driver.FindElement(By.XPath("//input[@id='selectFile']"));
             //    // Uploading File path
             //    var SampleWorkPath = MarsResource.SampleWorkPath;
             //    string fullPath = System.IO.Path.GetFullPath(SampleWorkPath);
@@ -203,8 +203,8 @@ namespace MarsFramework.Pages
             //}
 
             // Option 2: AutoIt
-            //GlobalDefinitions.driver.FindElement(By.ClassName("huge plus circle icon padding-25")).Click(); //Class Name Shouldn't have space inside, or use xpath or css.
-            GlobalDefinitions.driver.FindElement(By.CssSelector("i[class='huge plus circle icon padding-25']")).Click();
+            //driver.FindElement(By.ClassName("huge plus circle icon padding-25")).Click(); //Class Name Shouldn't have space inside, or use xpath or css.
+            driver.FindElement(By.CssSelector("i[class='huge plus circle icon padding-25']")).Click();
         
             AutoItX3 AutoIt = new AutoItX3();
             AutoIt.WinActivate("Open");
@@ -218,8 +218,8 @@ namespace MarsFramework.Pages
 
 
             // Choose Active radio button
-            GlobalDefinitions.WaitForElement(GlobalDefinitions.driver, "XPath", "//i[@class='remove sign icon floatRight']", 10);
-            IWebElement IsActiveRadioBtn = GlobalDefinitions.driver.FindElement(By.XPath("//input[@name='isActive' and" +
+            GlobalDefinitions.WaitForElement(driver, "XPath", "//i[@class='remove sign icon floatRight']", 10);
+            IWebElement IsActiveRadioBtn = driver.FindElement(By.XPath("//input[@name='isActive' and" +
                 " @value='" + GlobalDefinitions.ExcelLib.ReadData(2, "Active") + "']"));
             IsActiveRadioBtn.Click();
 
@@ -229,19 +229,19 @@ namespace MarsFramework.Pages
         }
 
     
-        internal void VerifyEnterShareSkill()
+        internal void VerifyEnterShareSkill(IWebDriver driver)
         {
             // Wait element turn up &  Verify part info on default manage listing page
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, "XPath", "//*[@id='listing-management-section']" +
+            GlobalDefinitions.WaitForElementClickable(driver, "XPath", "//*[@id='listing-management-section']" +
                 "//tr[1]/td[8]/div/button[1]/i", 10);
 
             // Verify Title           
-            var titleExpected = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='listing-management-section']" +
+            var titleExpected = driver.FindElement(By.XPath("//*[@id='listing-management-section']" +
                 "//tbody/tr[1]/td[3]")).Text;
             Assert.That(titleExpected, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Title")));
                       
             // Verify Category
-            var categoryExpected = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='listing-management-section']" +
+            var categoryExpected = driver.FindElement(By.XPath("//*[@id='listing-management-section']" +
                 "//tbody/tr[1]/td[2]")).Text;
             Assert.That(categoryExpected, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Category")));
 
@@ -249,7 +249,7 @@ namespace MarsFramework.Pages
             // Not available now on this page
 
             // Verify Service Type
-            var serviceTypeExpected = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='listing-management-section']" +
+            var serviceTypeExpected = driver.FindElement(By.XPath("//*[@id='listing-management-section']" +
                 "//tbody/tr[1]/td[5]")).Text;
             if(serviceTypeExpected == "Hourly")
             {
@@ -263,7 +263,7 @@ namespace MarsFramework.Pages
             }         
 
             // Verify Skill Trade / Two conditions
-            string skillTradeExpected = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='listing-management-section']" +
+            string skillTradeExpected = driver.FindElement(By.XPath("//*[@id='listing-management-section']" +
                 "//tbody/tr[1]/td[6]")).GetAttribute("class").ToString();
             if (skillTradeExpected == "grey remove circle large icon")
             {
@@ -282,19 +282,19 @@ namespace MarsFramework.Pages
 
             // Verify remaining parts on detail page
             // Click eye icon and wait element turn up
-            GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='listing-management-section']" +
+            driver.FindElement(By.XPath("//*[@id='listing-management-section']" +
                 "//tr[1]/td[8]/div/button[1]/i")).Click();
 
-            IWebElement titleOnDetailsPage = GlobalDefinitions.driver.FindElement(By.XPath("//span[@class='skill-title']"));
-            GlobalDefinitions.WaitForTextPresentInElement(GlobalDefinitions.driver, titleOnDetailsPage, GlobalDefinitions.ExcelLib.ReadData(2, "Title"), 10);
+            IWebElement titleOnDetailsPage = driver.FindElement(By.XPath("//span[@class='skill-title']"));
+            GlobalDefinitions.WaitForTextPresentInElement(driver, titleOnDetailsPage, GlobalDefinitions.ExcelLib.ReadData(2, "Title"), 10);
 
             // Verify Description
-            var descriptionExpected = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='service-detail-section']" +
+            var descriptionExpected = driver.FindElement(By.XPath("//*[@id='service-detail-section']" +
                 "/div[2]/div/div[2]/div[1]/div[1]/div[2]/div[2]/div/div/div[1]//div[2]")).Text;
             Assert.That(descriptionExpected, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Description")));
 
             // Verify Location Tyoe
-            var locationTypeExpected = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='service-detail-section']" +
+            var locationTypeExpected = driver.FindElement(By.XPath("//*[@id='service-detail-section']" +
                 "//div[1]//div[2]//div[3]//div[3]//div[2]")).Text;
             if (locationTypeExpected == "On-Site")
             {
@@ -308,19 +308,19 @@ namespace MarsFramework.Pages
             }
 
             // Verify Subcategory
-            var subCategoryExpected = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='service-detail-section']" +
+            var subCategoryExpected = driver.FindElement(By.XPath("//*[@id='service-detail-section']" +
                 "//div[2]/div[2]/div//div[2]//div[2]/div/div[2]")).Text;
             Assert.That(subCategoryExpected, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "SubCategory")));
 
             // Verify Available days and time
-            var startDateExpected = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='service-detail-section']" +
+            var startDateExpected = driver.FindElement(By.XPath("//*[@id='service-detail-section']" +
                 "//div[3]/div/div[1]/div/div[2]")).Text;
             var startDateExcel = GlobalDefinitions.ExcelLib.ReadData(2, "StartDate");
             DateTime startDt = DateTime.Parse(startDateExcel);
             var startDateFormat = startDt.ToString("yyyy-MM-dd");
             Assert.That(startDateExpected, Is.EqualTo(startDateFormat));
 
-            var endDateExpected = GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='service-detail-section']" +
+            var endDateExpected = driver.FindElement(By.XPath("//*[@id='service-detail-section']" +
                 "//div[2]//div[3]//div[2]//div[2]")).Text;
             var endDateExcel = GlobalDefinitions.ExcelLib.ReadData(2, "EndDate");
             DateTime endDt = DateTime.Parse(endDateExcel);

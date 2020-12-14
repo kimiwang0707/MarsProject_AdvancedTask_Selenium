@@ -18,7 +18,7 @@ namespace MarsFramework.Pages
     {
         public SearchSkills()
         {
-            PageFactory.InitElements(GlobalDefinitions.driver, this);
+            PageFactory.InitElements(Base.driver, this);
         }
 
         #region Initialize web elements
@@ -59,26 +59,26 @@ namespace MarsFramework.Pages
 
 
         #region Search Skills By Categories
-        internal void SearchSkillsByCategories()
+        internal void SearchSkillsByCategories(IWebDriver driver)
         {
             // Populate the excel data into system
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ShareSkillPath, "ShareSkill");
 
             // Wait and click on Search icon
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, "XPath",
+            GlobalDefinitions.WaitForElementClickable(driver, "XPath",
                 "//i[@class='search link icon']", 10);
             SearchIcon.Click();
 
             // Wait, Click on Category and Sub-Category
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, "XPath",
+            GlobalDefinitions.WaitForElementClickable(driver, "XPath",
                 "//*[@id='service-search-section']//section/div/div[1]/div[1]/div/a[last()]", 10);
-            IWebElement Category = GlobalDefinitions.driver.FindElement(By.XPath("//a[contains(text(), '" 
+            IWebElement Category = driver.FindElement(By.XPath("//a[contains(text(), '" 
                 + GlobalDefinitions.ExcelLib.ReadData(2, "Category") +"')]"));
             Category.Click();
 
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, "XPath",
+            GlobalDefinitions.WaitForElementClickable(driver, "XPath",
                 "//a[@class='item subcategory']", 10);
-            IWebElement SubCategory = GlobalDefinitions.driver.FindElement(By.XPath("//a[contains(text(), '"
+            IWebElement SubCategory = driver.FindElement(By.XPath("//a[contains(text(), '"
                 + GlobalDefinitions.ExcelLib.ReadData(2, "SubCategory") + "')]"));
             SubCategory.Click();
 
@@ -86,10 +86,10 @@ namespace MarsFramework.Pages
             Base.test.Log(LogStatus.Pass, "Search Skills by Category sucessfully!");
         }
 
-        internal void VerifySearchSkillsByCategories()
+        internal void VerifySearchSkillsByCategories(IWebDriver driver)
         {
             // Wait
-            //GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, "XPath",
+            //GlobalDefinitions.WaitForElementClickable(driver, "XPath",
             //        "//*[@id='service-search-section']//div[2]/div/button[last()-1]", 10);
             Thread.Sleep(1000);
 
@@ -100,14 +100,14 @@ namespace MarsFramework.Pages
             for(count = 0; count < totalPages; count++)
             {
                 // Wait 
-                //GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, "XPath",
+                //GlobalDefinitions.WaitForElementClickable(driver, "XPath",
                 //    "//*[@id='service-search-section']//div[last()]/div[1]/a[2]/p", 10);
                 Thread.Sleep(1000);
 
                 // Find results
                 try
                 {
-                    GlobalDefinitions.driver.FindElement(By.XPath("//p[text()='Breakdancing']"));
+                    driver.FindElement(By.XPath("//p[text()='Breakdancing']"));
                     Base.test.Log(LogStatus.Pass, "Verify Search Skills successfully!");
                     return;
                 } catch(NoSuchElementException)
@@ -134,45 +134,45 @@ namespace MarsFramework.Pages
         int onlineResults;
         int onsiteResults;
         int showAllResults;
-        internal void SearchSkillsByFilters()
+        internal void SearchSkillsByFilters(IWebDriver driver)
         {
             // Wait and click on Search icon
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, "XPath",
+            GlobalDefinitions.WaitForElementClickable(driver, "XPath",
                 "//i[@class='search link icon']", 10);
             SearchIcon.Click();
 
             // Wait and check total results
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, "XPath",
+            GlobalDefinitions.WaitForElementClickable(driver, "XPath",
                 "//*[@id='service-search-section']//div[2]/div/button[2]", 10);
-            totalResults = int.Parse(GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='service-search-section']//" +
+            totalResults = int.Parse(driver.FindElement(By.XPath("//*[@id='service-search-section']//" +
                 "div[1]/div[1]/div/a[1]/span")).Text);
 
             // Check online results
             FilterOnline.Click();
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, "XPath",
+            GlobalDefinitions.WaitForElementClickable(driver, "XPath",
                 "//*[@id='service-search-section']//div[2]/div/button[2]", 10);
-            onlineResults = int.Parse(GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='service-search-section']//" +
+            onlineResults = int.Parse(driver.FindElement(By.XPath("//*[@id='service-search-section']//" +
                 "div[1]/div[1]/div/a[1]/span")).Text);
 
             // Check onsite results
             FilterOnsite.Click();
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, "XPath",
+            GlobalDefinitions.WaitForElementClickable(driver, "XPath",
                 "//*[@id='service-search-section']//div[2]/div/button[2]", 10);
-            onsiteResults = int.Parse(GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='service-search-section']//" +
+            onsiteResults = int.Parse(driver.FindElement(By.XPath("//*[@id='service-search-section']//" +
                 "div[1]/div[1]/div/a[1]/span")).Text);
 
             // Check show all results
             FilterShowAll.Click();
-            GlobalDefinitions.WaitForElementClickable(GlobalDefinitions.driver, "XPath",
+            GlobalDefinitions.WaitForElementClickable(driver, "XPath",
                 "//*[@id='service-search-section']//div[2]/div/button[2]", 10);
-            showAllResults = int.Parse(GlobalDefinitions.driver.FindElement(By.XPath("//*[@id='service-search-section']//" +
+            showAllResults = int.Parse(driver.FindElement(By.XPath("//*[@id='service-search-section']//" +
                 "div[1]/div[1]/div/a[1]/span")).Text);
 
             // Extent report
             Base.test.Log(LogStatus.Pass, "Search skills by filter successfully!");
         }
 
-        internal void VerifySearchSkillsByFilters()
+        internal void VerifySearchSkillsByFilters(IWebDriver driver)
         {
             if (onlineResults + onsiteResults == totalResults && totalResults == showAllResults)
             {

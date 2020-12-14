@@ -9,13 +9,15 @@ using System.Linq;
 using System.Text;
 using ExcelReaderFactory = ExcelDataReader.ExcelReaderFactory;
 using NUnit.Framework;
+using MarsFramework.Global;
+using OpenQA.Selenium.Interactions;
 
 namespace MarsFramework.Global
 {
     class GlobalDefinitions
     {
         //Initialise the browser
-        public static IWebDriver driver { get; set; }
+        //public static IWebDriver driver { get; set; }
 
 
         #region Excel 
@@ -222,9 +224,30 @@ namespace MarsFramework.Global
 
         public static void ImplicitWait()
         {
-            GlobalDefinitions.driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            Base.driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 
+        public static void WaitForPageLoad()
+        {
+            var wait = new WebDriverWait(Base.driver, new TimeSpan(0, 0, 10));
+            wait.Until(driver => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
+        }
+
+        #endregion
+
+
+        #region Scroll the webpage
+        public static void ScrollToTop()
+        {
+            Actions a = new Actions(Base.driver);
+            a.SendKeys(Keys.Home).Perform();
+        }
+
+        public static void ScrollToBottom()
+        {
+            Actions a = new Actions(Base.driver);
+            a.SendKeys(Keys.End).Perform();
+        }
         #endregion
     }
 }
