@@ -111,8 +111,9 @@ namespace MarsFramework.Global
             
             // calling Flush writes everything to the log file (Reports)
             extent.Flush();
-            
-            // Close the driver :)            
+
+            // Close the driver(would better add driver.close() before dispose to avoid error "unable to delete file chromedriver.exe")
+            driver.Close();
             driver.Dispose();
         }
         #endregion

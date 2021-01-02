@@ -130,8 +130,8 @@ namespace MarsFramework.Pages
         internal void SelectNotification(IWebDriver driver)
         {
             // Scroll up the page
-            Actions a = new Actions(driver);
-            a.SendKeys(Keys.PageUp).Perform();
+            GlobalDefinitions.ScrollToTop();
+            Thread.Sleep(500);
 
             try
             {
@@ -291,6 +291,7 @@ namespace MarsFramework.Pages
             // Wait and Click on Load More 
             Thread.Sleep(2000);
             GlobalDefinitions.ScrollToBottom();
+            Thread.Sleep(500);
             GlobalDefinitions.WaitForElementClickable(driver, "XPath", "//a[contains(text(),'Load More')]", 15);
 
             ShowLessAndLoadMoreBtn.Click();
@@ -312,6 +313,7 @@ namespace MarsFramework.Pages
                 }
 
                 GlobalDefinitions.ScrollToBottom();
+                Thread.Sleep(500);
                 driver.FindElement(By.XPath("//a[contains(text(),'Load More')]")).Click();
                 Thread.Sleep(1500);
             }
@@ -328,9 +330,11 @@ namespace MarsFramework.Pages
             GlobalDefinitions.ScrollToBottom();
             Thread.Sleep(1000);
             LastNotificationCheckbox.Click();
+            Thread.Sleep(300);
 
             // Scroll to top of page
             GlobalDefinitions.ScrollToTop();
+            Thread.Sleep(500);
 
             // Click on delete button
             GlobalDefinitions.WaitForElementClickable(driver, "XPath", "//div[@data-tooltip='Delete selection']", 10);

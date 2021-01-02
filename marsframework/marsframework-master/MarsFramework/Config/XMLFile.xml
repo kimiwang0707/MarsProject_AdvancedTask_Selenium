@@ -20,11 +20,11 @@
     <reportName>Automation Report </reportName>
 
     <!-- report headline - displayed at top-nav, after reportHeadline -->
-    <reportHeadline> MARS </reportHeadline>
+    <reportHeadline> MARS PROJECT </reportHeadline>
 
     <!-- global date format override -->
     <!-- defaults to yyyy-MM-dd -->
-    <dateFormat>yyyy-MM-dd</dateFormat>
+    <dateFormat>dd-MM-yyyy</dateFormat>
 
     <!-- global time format override -->
     <!-- defaults to HH:mm:ss -->
